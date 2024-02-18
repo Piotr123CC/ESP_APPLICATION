@@ -1,0 +1,153 @@
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7084
+ho 0 tail 12 room 4
+load:0x40078000,len:15584
+load:0x40080400,len:4
+load:0x40080404,len:3876
+entry 0x4008064c
+[0;32mI (31) boot: ESP-IDF v5.1.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Feb 17 2024 21:33:22[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v1.0[0m
+[0;32mI (39) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=09b88h ( 39816) map[0m
+[0;32mI (119) esp_image: segment 1: paddr=00019bb0 vaddr=3ffb0000 size=02158h (  8536) load[0m
+[0;32mI (122) esp_image: segment 2: paddr=0001bd10 vaddr=40080000 size=04308h ( 17160) load[0m
+[0;32mI (132) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=14bf0h ( 84976) map[0m
+[0;32mI (164) esp_image: segment 4: paddr=00034c18 vaddr=40084308 size=07f1ch ( 32540) load[0m
+[0;32mI (184) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (184) boot: Disabling RNG early entropy source...[0m
+[0;32mI (195) cpu_start: Multicore app[0m
+[0;32mI (196) cpu_start: Pro cpu up.[0m
+[0;32mI (196) cpu_start: Starting app cpu, entry point is 0x400810f8[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (213) cpu_start: Pro cpu start user code[0m
+[0;32mI (214) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (214) cpu_start: Application information:[0m
+[0;32mI (218) cpu_start: Project name:     udemy_esp32_app[0m
+[0;32mI (224) cpu_start: App version:      1[0m
+[0;32mI (228) cpu_start: Compile time:     Feb 17 2024 21:33:11[0m
+[0;32mI (234) cpu_start: ELF file SHA256:  26e48dcf67df4aee...[0m
+[0;32mI (240) cpu_start: ESP-IDF:          v5.1.1-dirty[0m
+[0;32mI (246) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (250) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (255) cpu_start: Chip rev:         v1.0[0m
+[0;32mI (260) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (267) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (273) heap_init: At 3FFB2A48 len 0002D5B8 (181 KiB): DRAM[0m
+[0;32mI (280) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (286) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (292) heap_init: At 4008C224 len 00013DDC (79 KiB): IRAM[0m
+[0;32mI (300) spi_flash: detected chip: generic[0m
+[0;32mI (303) spi_flash: flash io: dio[0m
+[0;33mW (307) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (321) app_start: Starting scheduler on CPU0[0m
+[0;32mI (325) app_start: Starting scheduler on CPU1[0m
+[0;32mI (325) main_task: Started on CPU0[0m
+[0;32mI (335) main_task: Calling app_main()[0m
+r: 0, g: 0, b: 0
+r: 5, g: 10, b: 15
+r: 10, g: 20, b: 30
+r: 15, g: 30, b: 45
+r: 20, g: 40, b: 60
+r: 25, g: 50, b: 75
+r: 30, g: 60, b: 90
+r: 35, g: 70, b: 105
+r: 40, g: 80, b: 120
+r: 45, g: 90, b: 135
+r: 50, g: 100, b: 150
+r: 55, g: 110, b: 165
+r: 60, g: 120, b: 180
+r: 65, g: 130, b: 195
+r: 70, g: 140, b: 210
+r: 75, g: 150, b: 225
+r: 80, g: 160, b: 240
+r: 85, g: 170, b: 255
+r: 90, g: 180, b: 14
+r: 95, g: 190, b: 29
+r: 100, g: 200, b: 44
+r: 105, g: 210, b: 59
+r: 110, g: 220, b: 74
+r: 115, g: 230, b: 89
+r: 120, g: 240, b: 104
+r: 125, g: 250, b: 119
+r: 130, g: 4, b: 134
+r: 135, g: 14, b: 149
+r: 140, g: 24, b: 164
+r: 145, g: 34, b: 179
+r: 150, g: 44, b: 194
+r: 155, g: 54, b: 209
+r: 160, g: 64, b: 224
+r: 165, g: 74, b: 239
+r: 170, g: 84, b: 254
+r: 175, g: 94, b: 13
+r: 180, g: 104, b: 28
+r: 185, g: 114, b: 43
+r: 190, g: 124, b: 58
+r: 195, g: 134, b: 73
+r: 200, g: 144, b: 88
+r: 205, g: 154, b: 103
+r: 210, g: 164, b: 118
+r: 215, g: 174, b: 133
+r: 220, g: 184, b: 148
+r: 225, g: 194, b: 163
+r: 230, g: 204, b: 178
+r: 235, g: 214, b: 193
+r: 240, g: 224, b: 208
+r: 245, g: 234, b: 223
+r: 250, g: 244, b: 238
+r: 255, g: 254, b: 253
+r: 4, g: 8, b: 12
+r: 9, g: 18, b: 27
+r: 14, g: 28, b: 42
+r: 19, g: 38, b: 57
+r: 24, g: 48, b: 72
+r: 29, g: 58, b: 87
+r: 34, g: 68, b: 102
+r: 39, g: 78, b: 117
+r: 44, g: 88, b: 132
+r: 49, g: 98, b: 147
+r: 54, g: 108, b: 162
+r: 59, g: 118, b: 177
+r: 64, g: 128, b: 192
+r: 69, g: 138, b: 207
+r: 74, g: 148, b: 222
+r: 79, g: 158, b: 237
+r: 84, g: 168, b: 252
+r: 89, g: 178, b: 11
+r: 94, g: 188, b: 26
+r: 99, g: 198, b: 41
+r: 104, g: 208, b: 56
+r: 109, g: 218, b: 71
+r: 114, g: 228, b: 86
+r: 119, g: 238, b: 101
+r: 124, g: 248, b: 116
+r: 129, g: 2, b: 131
+r: 134, g: 12, b: 146
+r: 139, g: 22, b: 161
+r: 144, g: 32, b: 176
+r: 149, g: 42, b: 191
+r: 154, g: 52, b: 206
+r: 159, g: 62, b: 221
+r: 164, g: 72, b: 236
+r: 169, g: 82, b: 251
+r: 174, g: 92, b: 10
+r: 179, g: 102, b: 25
+r: 184, g: 112, b: 40
+r: 189, g: 122, b: 55
+r: 194, g: 132, b: 70
+r: 199, g: 142, b: 85
