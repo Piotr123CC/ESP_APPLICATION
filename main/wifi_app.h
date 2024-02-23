@@ -9,6 +9,7 @@
 #define MAIN_WIFI_APP_H_
 
 #include "esp_netif.h"
+#include "esp_wifi_types.h"
 
 //WiFi application settings
 
@@ -27,6 +28,10 @@
 #define MAX_PASSWORD_LENGTH				64
 #define MAX_CONNECTIONS_RETIRES			5
 
+
+#define WIFI_APP_TASK_STACK_SIZE			4096
+#define WIFI_APP_TASK_PRIORITY				5
+#define WIFI_APP_TASK_CORE_ID				0
 
 extern esp_netif_t* esp_netif_sta;
 extern esp_netif_t* esp_netif_ap;
@@ -51,7 +56,7 @@ typedef struct wifi_app_queue_message
  * @return pdTRUE if an item was successfully sent to the queue, otherwise pdFalse
  * @note Expand the parameter list based on your requirements e.g. how you've expanded the wifi_app_queue_message_t
  */
-BaseType_t wifi_app_send_message(wifi_app_message_e msgID);
+int wifi_app_send_message(wifi_app_message_e msgID);
 
 /**
  * Starts the WiFi RTOS task

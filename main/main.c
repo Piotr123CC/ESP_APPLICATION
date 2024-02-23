@@ -3,28 +3,23 @@
 #include <unistd.h>
 #include "driver/ledc.h"
 #include "rgb_led.h"
-
-
+#include "nvs_flash.h"
+#include "wifi_app.h"
+#include "nvs.h"
 void rgb_led_rainbow(void);
 
 void app_main(void)
 {
 //	rgb_led_pwm_init();
-	rgb_led_pwm_init();
-	uint8_t red = 0, green = 0, blue = 0;
-	printf("r: %u, g: %u, b: %u\n",red, green, blue);
-    while (true) {
-//      printf("Hello TROK!\n");
-//        rgb_led_set_color(red, green, blue);
-//        red += 5;
-////        green += 10;
-//        blue += 15;
-//        printf("r: %u, g: %u, b: %u\n",red, green, blue);
-//
-//        for(int i=0;i<999999;i++);
-    	rgb_led_rainbow();
+	esp_err_t ret = nvs_flash_init();
 
-    }
+	if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND )
+	{
+		ESP_ERROR_CHECK(nvs_flash_erase());
+		ret = nvs_flash_init();
+	}
+	ESP_ERROR_CHECK(ret);
+    wifi_app_start();
 }
 
 
