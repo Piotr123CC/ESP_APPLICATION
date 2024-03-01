@@ -29,9 +29,7 @@
 #define MAX_CONNECTIONS_RETIRES			5
 
 
-#define WIFI_APP_TASK_STACK_SIZE			4096
-#define WIFI_APP_TASK_PRIORITY				5
-#define WIFI_APP_TASK_CORE_ID				0
+
 
 extern esp_netif_t* esp_netif_sta;
 extern esp_netif_t* esp_netif_ap;
