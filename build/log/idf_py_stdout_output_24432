@@ -1,0 +1,9 @@
+-- Existing sdkconfig 'C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/sdkconfig' renamed to 'C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/sdkconfig.old'.
+-- Found Git: C:/Espressif/VSCTools/tools/idf-git/2.39.2/cmd/git.exe (found version "2.39.2.windows.1") 
+-- The C compiler identification is GNU 12.2.0
+-- The CXX compiler identification is GNU 12.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: C:/Espressif/VSCTools/tools/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Configuring incomplete, errors occurred!
+See also "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/CMakeFiles/CMakeOutput.log".
