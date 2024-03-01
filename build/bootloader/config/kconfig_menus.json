@@ -633,8 +633,8 @@
         "children": [],
         "depends_on": null,
         "help": null,
-        "id": "SOC_CPU_WATCHPOINT_MAX_REGION_SIZE",
-        "name": "SOC_CPU_WATCHPOINT_MAX_REGION_SIZE",
+        "id": "SOC_CPU_WATCHPOINT_SIZE",
+        "name": "SOC_CPU_WATCHPOINT_SIZE",
         "range": null,
         "title": null,
         "type": "int"
@@ -2143,16 +2143,6 @@
         "children": [],
         "depends_on": null,
         "help": null,
-        "id": "SOC_PHY_COMBO_MODULE",
-        "name": "SOC_PHY_COMBO_MODULE",
-        "range": null,
-        "title": null,
-        "type": "bool"
-    },
-    {
-        "children": [],
-        "depends_on": null,
-        "help": null,
         "id": "IDF_CMAKE",
         "name": "IDF_CMAKE",
         "range": null,
@@ -3250,8 +3240,8 @@
             },
             {
                 "children": [],
-                "depends_on": "SECURE_SIGNED_APPS && SECURE_SIGNED_APPS_ECDSA_SCHEME && !SECURE_BOOT_BUILD_SIGNED_BINARIES",
-                "help": "Path to a public key file used to verify signed images.\nSecure Boot V1: This ECDSA public key is compiled into the bootloader and/or\napp, to verify app images.\n\nKey file is in raw binary format, and can be extracted from a\nPEM formatted private key using the espsecure.py\nextract_public_key command.\n\nRefer to the Secure Boot section of the ESP-IDF Programmer's Guide for this version before enabling.",
+                "depends_on": "SECURE_SIGNED_APPS && !SECURE_BOOT_BUILD_SIGNED_BINARIES && !SECURE_SIGNED_APPS_RSA_SCHEME",
+                "help": "Path to a public key file used to verify signed images.\nSecure Boot V1: This ECDSA public key is compiled into the bootloader and/or\napp, to verify app images.\nSecure Boot V2: This RSA public key is compiled into the signature block at\nthe end of the bootloader/app.\n\nKey file is in raw binary format, and can be extracted from a\nPEM formatted private key using the espsecure.py\nextract_public_key command.\n\nRefer to the Secure Boot section of the ESP-IDF Programmer's Guide for this version before enabling.",
                 "id": "SECURE_BOOT_VERIFICATION_KEY",
                 "name": "SECURE_BOOT_VERIFICATION_KEY",
                 "range": null,
@@ -5101,16 +5091,6 @@
                                 "range": null,
                                 "title": "Ignore MAC CRC error (not recommended)",
                                 "type": "bool"
-                            },
-                            {
-                                "children": [],
-                                "depends_on": null,
-                                "help": "When this configuration is enabled, the user can invoke `esp_read_mac` to obtain the desired type of\nMAC using a custom MAC as the base MAC.",
-                                "id": "ESP_MAC_USE_CUSTOM_MAC_AS_BASE_MAC",
-                                "name": "ESP_MAC_USE_CUSTOM_MAC_AS_BASE_MAC",
-                                "range": null,
-                                "title": "Enable using custom mac as base mac",
-                                "type": "bool"
                             }
                         ],
                         "depends_on": null,
@@ -5182,36 +5162,16 @@
                             },
                             {
                                 "children": [],
-                                "depends_on": null,
-                                "help": "When the chip exits sleep, the CPU and the flash chip are powered on at the same time.\nCPU will run rom code (deepsleep) or ram code (lightsleep) first, and then load or execute\ncode from flash.\n\nSome flash chips need sufficient time to pass between power on and first read operation.\nBy default, without any extra delay, this time is approximately 900us, although\nsome flash chip types need more than that.\n\n(!!! Please adjust this value according to the Data Sheet of SPI Flash used in your project.)\nIn Flash Data Sheet, the parameters that define the Flash ready timing after power-up (minimum\ntime from Vcc(min) to CS activeare) usually named tVSL in ELECTRICAL CHARACTERISTICS chapter,\nand the configuration value here should be:\nESP_SLEEP_WAIT_FLASH_READY_EXTRA_DELAY = tVSL - 900\n\nFor esp32 and esp32s3, the default extra delay is set to 2000us. When optimizing startup time\nfor applications which require it, this value may be reduced.\n\nIf you are seeing \"flash read err, 1000\" message printed to the console after deep sleep reset\non esp32, or triggered RTC_WDT/LP_WDT after lightsleep wakeup, try increasing this value.\n(For esp32, the delay will be executed in both deep sleep and light sleep wake up flow.\nFor chips after esp32, the delay will be executed only in light sleep flow, the delay\ncontrolled by the EFUSE_FLASH_TPUW in ROM will be executed in deepsleep wake up flow.)",
-                                "id": "ESP_SLEEP_WAIT_FLASH_READY_EXTRA_DELAY",
-                                "name": "ESP_SLEEP_WAIT_FLASH_READY_EXTRA_DELAY",
+                                "depends_on": "IDF_TARGET_ESP32 || IDF_TARGET_ESP32S3",
+                                "help": "When the chip exits deep sleep, the CPU and the flash chip are powered on\nat the same time. CPU will run deep sleep stub first, and then\nproceed to load code from flash. Some flash chips need sufficient\ntime to pass between power on and first read operation. By default,\nwithout any extra delay, this time is approximately 900us, although\nsome flash chip types need more than that.\n\nBy default extra delay is set to 2000us. When optimizing startup time\nfor applications which require it, this value may be reduced.\n\nIf you are seeing \"flash read err, 1000\" message printed to the\nconsole after deep sleep reset, try increasing this value.",
+                                "id": "ESP_SLEEP_DEEP_SLEEP_WAKEUP_DELAY",
+                                "name": "ESP_SLEEP_DEEP_SLEEP_WAKEUP_DELAY",
                                 "range": [
                                     0,
                                     5000
                                 ],
-                                "title": "Extra delay (in us) after flash powerdown sleep wakeup to wait flash ready",
+                                "title": "Extra delay in deep sleep wake stub (in us)",
                                 "type": "int"
-                            },
-                            {
-                                "children": [],
-                                "depends_on": null,
-                                "help": "When using rtc gpio wakeup source during deepsleep without external pull-up/downs, you may want to\nmake use of the internal ones.",
-                                "id": "ESP_SLEEP_GPIO_ENABLE_INTERNAL_RESISTORS",
-                                "name": "ESP_SLEEP_GPIO_ENABLE_INTERNAL_RESISTORS",
-                                "range": null,
-                                "title": "Allow to enable internal pull-up/downs for the Deep-Sleep wakeup IOs",
-                                "type": "bool"
-                            },
-                            {
-                                "children": [],
-                                "depends_on": "FREERTOS_USE_TICKLESS_IDLE",
-                                "help": "If enabled, it allows user to register sleep event callbacks. It is primarily designed for internal\ndevelopers and customers can use PM_LIGHT_SLEEP_CALLBACKS as an alternative.\n\nNOTE: These callbacks are executed from the IDLE task context hence you cannot have any blocking calls\nin your callbacks.\n\nNOTE: Enabling these callbacks may change sleep duration calculations based on time spent in\ncallback and hence it is highly recommended to keep them as short as possible.",
-                                "id": "ESP_SLEEP_EVENT_CALLBACKS",
-                                "name": "ESP_SLEEP_EVENT_CALLBACKS",
-                                "range": null,
-                                "title": "Enable registration of sleep event callbacks",
-                                "type": "bool"
                             }
                         ],
                         "depends_on": null,
@@ -6595,16 +6555,6 @@
                         "name": "ESP_SYSTEM_BROWNOUT_INTR",
                         "range": null,
                         "title": null,
-                        "type": "bool"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": "IDF_TARGET_ESP32C2 || IDF_TARGET_ESP32S3 || IDF_TARGET_ESP32C6 || IDF_TARGET_ESP32H2",
-                        "help": "This configuration helps to address an BBPLL inaccurate issue when boot from certain bootloader version,\nwhich may increase about the boot-up time by about 200 us. Disable this when your bootloader is built with\nESP-IDF version v5.2 and above.",
-                        "id": "ESP_SYSTEM_BBPLL_RECALIB",
-                        "name": "ESP_SYSTEM_BBPLL_RECALIB",
-                        "range": null,
-                        "title": "Re-calibration BBPLL at startup",
                         "type": "bool"
                     }
                 ],
@@ -8230,26 +8180,6 @@
                         "help": "This option is invisible, and will be selected automatically\nwhen ``ESPTOOLPY_FLASHFREQ_120M`` is selected.",
                         "id": "SPI_FLASH_HPM_ENABLE",
                         "name": "SPI_FLASH_HPM_ENABLE",
-                        "range": null,
-                        "title": null,
-                        "type": "bool"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": "!APP_BUILD_TYPE_PURE_RAM_APP",
-                        "help": "This is a helper config for 32bits address flash. Invisible for users.",
-                        "id": "SPI_FLASH_32BIT_ADDRESS",
-                        "name": "SPI_FLASH_32BIT_ADDRESS",
-                        "range": null,
-                        "title": null,
-                        "type": "bool"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": "!APP_BUILD_TYPE_PURE_RAM_APP",
-                        "help": null,
-                        "id": "SPI_FLASH_OCTAL_32BIT_ADDR_ENABLE",
-                        "name": "SPI_FLASH_OCTAL_32BIT_ADDR_ENABLE",
                         "range": null,
                         "title": null,
                         "type": "bool"

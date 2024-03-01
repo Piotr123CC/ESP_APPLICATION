@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "C:/Espressif/VSC_ESP/v5.1.3/esp-idf/components/bootloader/subproject"
+  "C:/Espressif/frameworks/esp-idf-v5.1.1/components/bootloader/subproject"
   "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/bootloader"
   "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/bootloader-prefix"
   "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/bootloader-prefix/tmp"

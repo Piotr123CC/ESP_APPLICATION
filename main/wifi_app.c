@@ -12,13 +12,13 @@
 #include "esp_err.h"
 #include "esp_log.h"
 #include "esp_wifi.h"
+
 #include "lwip/netdb.h"
-
-
-
+#include "http_server.h"
 #include "rgb_led.h"
 #include "tasks_common.h"
 #include "wifi_app.h"
+
 
 
 static const char TAG[] = "wifi_app";
@@ -96,7 +96,7 @@ static void wifi_app_event_handler_init(void)
 	esp_event_handler_instance_t instance_ip_event;
 
 	ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_app_event_handler, NULL, &instance_wifi_event));
-	ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT, ESP_EVENT_ANY_ID, &wifi_app_event_handler, NULL, &instance_wifi_event));
+	ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT, ESP_EVENT_ANY_ID, &wifi_app_event_handler, NULL, &instance_ip_event));
 
 }
 
@@ -194,8 +194,8 @@ static void wifi_app_task(void *pvParameters)
 			{
 				case WIFI_APP_MSG_START_HTTP_SERVER:
 					ESP_LOGI(TAG, "WIFI_APP_MSG_START_HTTP_SERVER");
-//					http_server_start();
-
+					
+					http_server_start();
 					rgb_led_http_server_started();
 					break;
 
