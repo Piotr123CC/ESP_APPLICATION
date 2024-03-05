@@ -6,6 +6,8 @@
 #include "nvs_flash.h"
 #include "wifi_app.h"
 #include "nvs.h"
+#include "driver/uart.h"
+#include "driver/gpio.h"
 void rgb_led_rainbow(void);
 
 void app_main(void)
