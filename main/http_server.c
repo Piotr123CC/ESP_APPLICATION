@@ -9,6 +9,7 @@
 #include "esp_http_server.h"
 #include "esp_log.h"
 #include "esp_ota_ops.h"
+#include "esp_timer.h"
 #include "sys/param.h"
 
 #include "http_server.h"
@@ -28,6 +29,31 @@ static httpd_handle_t http_server_handle = NULL;
 static TaskHandle_t task_http_server_monitor = NULL;
 
 static QueueHandle_t http_server_monitor_queue_handle = NULL;
+
+esp_timer_handle_t fw_update_reset;
+
+const esp_timer_create_args_t fw_update_reset_args = {
+    .callback = &http_server_fw_update_reset_callback,
+    .arg = NULL,
+    .dispatch_method = ESP_TIMER_TASK,
+    .name = "fw_update_reset"
+};
+
+static void http_server_fw_update_reset_timer(void)
+{
+    if (g_fw_update_status == OTA_UPDATE_SUCCESFUL)
+    {
+        ESP_LOGI(TAG, "http_server_fw_update_reset_timer: FW updated succesful starting FW update reset timer");
+
+        ESP_ERROR_CHECK(esp_timer_create(&fw_update_reset_args, &fw_update_reset));
+        ESP_ERROR_CHECK(esp_timer_start_once(fw_update_reset, 8000000));
+    }
+    else{
+        ESP_LOGI(TAG, "http_server_fw_update_reset_timer: FW updated unsuccesful");
+    }
+}
+
+
 
 extern const uint8_t jquery_3_3_1_min_js_start[]	asm("_binary_jquery_3_3_1_min_js_start");
 extern const uint8_t jquery_3_3_1_min_js_end[]		asm("_binary_jquery_3_3_1_min_js_end");
@@ -66,6 +92,7 @@ static void http_server_monitor(void *parameter)
         case HTTP_MSG_OTA_UPDATE_SUCCESSFUL:
             ESP_LOGI(TAG, "HTTP_MSG_OTA_UPDATE_SUCCESSFUL");
             g_fw_update_status = OTA_UPDATE_SUCCESFUL;
+            http_server_fw_update_reset_timer();
             break;
 
         case HTTP_MSG_OTA_UPDATE_FAILED:
@@ -394,4 +421,10 @@ BaseType_t http_server_monitor_send_message(http_server_message_e msgID)
     http_server_queue_message_t msg;
     msg.msgID = msgID;
     return xQueueSend(http_server_monitor_queue_handle, &msg, portMAX_DELAY);
+}
+
+void http_server_fw_update_reset_callback(void *arg)
+{
+    ESP_LOGI(TAG, "http_server_fw_update_reset_callback: timer timed-out, restarting the device");
+    esp_restart();
 }

@@ -19,6 +19,8 @@
         "gpio.h": "c",
         "sdkconfig.h": "c",
         "esp_netif.h": "c",
-        "macros.h": "c"
+        "macros.h": "c",
+        "timer.h": "c",
+        "param.h": "c"
     }
 }

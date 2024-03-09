@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "udemy_esp32_app",
-    "project_version":    "807fa7b-dirty",
+    "project_version":    "defebc3-dirty",
     "project_path":       "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.1.1",
     "build_dir":          "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build",
