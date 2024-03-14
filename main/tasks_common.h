@@ -20,6 +20,9 @@
 #define HTTP_SERVER_MONITOR_PRIORITY		3
 #define HTTP_SERVER_MONITOR_CORE_ID			0
 
+#define DHT22_TASK_STACK_SIZE		        4096
+#define DHT22_TASK_PRIORITY		            5
+#define DHT22_TASK_CORE_ID			        1
 
 
 #endif /* MAIN_TASKS_COMMON_H_ */

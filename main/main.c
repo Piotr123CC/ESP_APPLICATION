@@ -8,6 +8,8 @@
 #include "nvs.h"
 #include "driver/uart.h"
 #include "driver/gpio.h"
+#include "DHT22.h"
+
 void rgb_led_rainbow(void);
 
 void app_main(void)
@@ -22,6 +24,10 @@ void app_main(void)
 	}
 	ESP_ERROR_CHECK(ret);
     wifi_app_start();
+
+	DHT22_task_start();
+
+
 }
 
 

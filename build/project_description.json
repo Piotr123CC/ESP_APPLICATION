@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "udemy_esp32_app",
-    "project_version":    "defebc3-dirty",
+    "project_version":    "caaac66-dirty",
     "project_path":       "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.1.1",
     "build_dir":          "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build",
@@ -790,7 +790,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/main/main.c", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/main/rgb_led.c", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/main/wifi_app.c", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/main/http_server.c", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/app.js.S", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/app.css.S", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/favicon.ico.S", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/index.html.S", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/jquery-3.3.1.min.js.S" ],
+            "sources": [ "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/main/main.c", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/main/rgb_led.c", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/main/wifi_app.c", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/main/http_server.c", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/main/DHT22.c", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/main/dht.c", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/app.js.S", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/app.css.S", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/favicon.ico.S", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/index.html.S", "C:/Users/Piotr/Desktop/ESP_REPO/udemy_esp32/build/jquery-3.3.1.min.js.S" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {

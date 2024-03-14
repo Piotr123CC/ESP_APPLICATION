@@ -21,6 +21,8 @@
         "esp_netif.h": "c",
         "macros.h": "c",
         "timer.h": "c",
-        "param.h": "c"
+        "param.h": "c",
+        "ets_sys.h": "c",
+        "stdlib.h": "c"
     }
 }
